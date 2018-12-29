@@ -5,19 +5,41 @@ const sineTestNote = {
   },
   "graph": [
     {
-      "name": "Oscillator Gain",
+      "name": "Envelope",
       "type": "gain",
       "properties": {
-        "value": 0.25
+        "values": [
+          {
+            "type": "exponential",
+            "value": 1,
+            "timeFrom": "start",
+            "time": 0.03,
+          },
+          {
+            "type": "linear",
+            "value": 1,
+            "timeFrom": "end",
+            "time": 0.1,
+          }
+        ]
       },
       "connections": [
         {
-          "name": "Sine",
-          "type": "oscillator",
+          "name": "Oscillator Gain",
+          "type": "gain",
           "properties": {
-            "type": "sine",
-            "multiple": 1
-          }
+            "value": 0.25
+          },
+          "connections": [
+            {
+              "name": "Sine",
+              "type": "oscillator",
+              "properties": {
+                "type": "sine",
+                "multiple": 1
+              }
+            }
+          ]
         }
       ]
     }

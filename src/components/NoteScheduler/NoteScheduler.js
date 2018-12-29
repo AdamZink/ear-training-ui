@@ -1,5 +1,7 @@
 import { Component } from 'react';
 
+const DEFAULT_NOTE_LENGTH = 0.5;
+
 class NoteScheduler extends Component {
 
   scheduleNote(note) {
@@ -44,6 +46,32 @@ class NoteScheduler extends Component {
       constantGainNode.connect(destination);
       return constantGainNode;
     }
+    else if (properties.values !== undefined) {
+      var envelopeGainNode = this.props.audioContext.createGain()
+      envelopeGainNode.gain.setValueAtTime(0.00001, this.currentTime)
+      properties.values.forEach((value) => this.setEnvelopeValue(envelopeGainNode, value))
+      envelopeGainNode.gain.exponentialRampToValueAtTime(0.00001, this.currentTime + DEFAULT_NOTE_LENGTH)
+      envelopeGainNode.connect(destination)
+      return envelopeGainNode
+    }
+  }
+
+  setEnvelopeValue(envelopeGainNode, value) {
+    if (value.type === undefined)
+      return
+    let calculatedTime = value.timeFrom === "start" ? this.currentTime + value.time : this.currentTime + DEFAULT_NOTE_LENGTH - value.time
+    switch (value.type) {
+      case "linear":
+        envelopeGainNode.gain.linearRampToValueAtTime(value.value, calculatedTime)
+        break
+
+      case "exponential":
+        envelopeGainNode.gain.exponentialRampToValueAtTime(value.value, calculatedTime)
+        break
+
+      default:
+        break
+    }
   }
 
   connectOscillatorNode(properties, destination) {
@@ -58,7 +86,7 @@ class NoteScheduler extends Component {
         sineOscillatorNode.connect(destination);
 
         sineOscillatorNode.start(this.currentTime);
-        sineOscillatorNode.stop(this.currentTime + 0.5);
+        sineOscillatorNode.stop(this.currentTime + DEFAULT_NOTE_LENGTH);
 
         return sineOscillatorNode;
 
