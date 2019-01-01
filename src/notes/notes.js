@@ -44,6 +44,6 @@ const sineTestNote = {
       ]
     }
   ]
-}
+};
 
 export default sineTestNote;

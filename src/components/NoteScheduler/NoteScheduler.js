@@ -47,30 +47,31 @@ class NoteScheduler extends Component {
       return constantGainNode;
     }
     else if (properties.values !== undefined) {
-      var envelopeGainNode = this.props.audioContext.createGain()
-      envelopeGainNode.gain.setValueAtTime(0.00001, this.currentTime)
-      properties.values.forEach((value) => this.setEnvelopeValue(envelopeGainNode, value))
-      envelopeGainNode.gain.exponentialRampToValueAtTime(0.00001, this.currentTime + DEFAULT_NOTE_LENGTH)
-      envelopeGainNode.connect(destination)
-      return envelopeGainNode
+      var envelopeGainNode = this.props.audioContext.createGain();
+      envelopeGainNode.gain.setValueAtTime(0.00001, this.currentTime);
+      properties.values.forEach((value) => this.setEnvelopeValue(envelopeGainNode, value));
+      envelopeGainNode.gain.exponentialRampToValueAtTime(0.00001, this.currentTime + DEFAULT_NOTE_LENGTH);
+      envelopeGainNode.connect(destination);
+      return envelopeGainNode;
     }
   }
 
   setEnvelopeValue(envelopeGainNode, value) {
     if (value.type === undefined)
-      return
+      return;
+
     let calculatedTime = value.timeFrom === "start" ? this.currentTime + value.time : this.currentTime + DEFAULT_NOTE_LENGTH - value.time
     switch (value.type) {
       case "linear":
-        envelopeGainNode.gain.linearRampToValueAtTime(value.value, calculatedTime)
-        break
+        envelopeGainNode.gain.linearRampToValueAtTime(value.value, calculatedTime);
+        break;
 
       case "exponential":
-        envelopeGainNode.gain.exponentialRampToValueAtTime(value.value, calculatedTime)
-        break
+        envelopeGainNode.gain.exponentialRampToValueAtTime(value.value, calculatedTime);
+        break;
 
       default:
-        break
+        break;
     }
   }
 
