@@ -7,9 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <p>
-          <h2>React Web Audio Demo</h2>
-        </p>
+        <h2>React Web Audio Demo</h2>
         <p>
           <WebAudioEngine ref="webAudioEngine" />
           <button onClick={() => this.refs.webAudioEngine.callScheduleNote()}>Play Tone</button>
