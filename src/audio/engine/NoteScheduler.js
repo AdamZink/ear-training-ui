@@ -1,10 +1,8 @@
-import { Component } from 'react';
-
 const DEFAULT_NOTE_LENGTH = 0.5;
 
-class NoteScheduler extends Component {
+class NoteScheduler {
 
-  scheduleNote(audioContext, note) {
+  static scheduleNote(audioContext, note) {
     this.currentTime = audioContext.currentTime;
 
     if (note.params === undefined || note.params.fundamental === undefined) {
@@ -22,7 +20,7 @@ class NoteScheduler extends Component {
     note.graph.forEach((node) => this.connectNode(audioContext, node, destination));
   }
 
-  connectNode(audioContext, node, destination) {
+  static connectNode(audioContext, node, destination) {
     switch (node.type) {
       case "gain":
         let gainNode = this.connectGainNode(audioContext, node.properties, destination);
@@ -39,7 +37,7 @@ class NoteScheduler extends Component {
     }
   }
 
-  connectGainNode(audioContext, properties, destination) {
+  static connectGainNode(audioContext, properties, destination) {
     if (properties.value !== undefined) {
       let constantGainNode = audioContext.createGain();
       constantGainNode.gain.setValueAtTime(properties.value, this.currentTime);
@@ -56,7 +54,7 @@ class NoteScheduler extends Component {
     }
   }
 
-  setEnvelopeValue(envelopeGainNode, value) {
+  static setEnvelopeValue(envelopeGainNode, value) {
     if (value.type === undefined)
       return;
 
@@ -75,7 +73,7 @@ class NoteScheduler extends Component {
     }
   }
 
-  connectOscillatorNode(audioContext, properties, destination) {
+  static connectOscillatorNode(audioContext, properties, destination) {
     if (properties.type === undefined || properties.multiple === undefined)
       return destination;
 
@@ -96,14 +94,10 @@ class NoteScheduler extends Component {
     }
   }
 
-  connectSources(audioContext, connections, destination) {
+  static connectSources(audioContext, connections, destination) {
     if (connections !== undefined) {
       connections.forEach((source) => this.connectNode(audioContext, source, destination));
     }
-  }
-
-  render() {
-    return null;
   }
 }
 
