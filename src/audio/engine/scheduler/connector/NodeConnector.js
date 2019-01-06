@@ -1,5 +1,5 @@
-import GainNodeConnector from './GainNodeConnector';
-import OscillatorNodeConnector from './OscillatorNodeConnector';
+import GainNodeConnector from './gain/GainNodeConnector';
+import OscillatorNodeConnector from './oscillator/OscillatorNodeConnector';
 
 class NodeConnector {
 

@@ -1,8 +1,6 @@
-import NoteScheduler from './NoteScheduler';
+import NoteScheduler from './scheduler/NoteScheduler';
 import sineTestNote from 'audio/notes';
-
-const AUDIO_CONTEXT = 'audioContext';
-export const DEFAULT_NOTE_LENGTH = 0.5;
+import { AUDIO_CONTEXT } from './constants';
 
 class WebAudioEngine {
 

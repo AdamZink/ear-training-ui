@@ -1,4 +1,4 @@
-import { DEFAULT_NOTE_LENGTH } from './WebAudioEngine';
+import { DEFAULT_NOTE_LENGTH } from 'audio/engine/constants';
 
 class OscillatorNodeConnector {
 
