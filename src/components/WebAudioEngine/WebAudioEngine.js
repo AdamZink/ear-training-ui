@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NoteScheduler from 'components/NoteScheduler';
-import testSineNote from 'notes';
+import sineTestNote from 'audio/notes';
 
 const AUDIO_CONTEXT = 'audioContext';
 
@@ -20,7 +20,7 @@ class WebAudioEngine extends Component {
 
   callScheduleNote() {
     this.verifyElseCreateAudioContext();
-    this.refs.NoteScheduler.scheduleNote(this.audioContext, testSineNote);
+    this.refs.NoteScheduler.scheduleNote(this.audioContext, sineTestNote);
   }
 
   render() {
