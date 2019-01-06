@@ -4,8 +4,8 @@ const DEFAULT_NOTE_LENGTH = 0.5;
 
 class NoteScheduler extends Component {
 
-  scheduleNote(note) {
-    this.currentTime = this.props.audioContext.currentTime;
+  scheduleNote(audioContext, note) {
+    this.currentTime = audioContext.currentTime;
 
     if (note.params === undefined || note.params.fundamental === undefined) {
       this.params = {
@@ -17,21 +17,21 @@ class NoteScheduler extends Component {
 
     this.params = note.params;
 
-    let destination = this.props.audioContext.destination;
+    let destination = audioContext.destination;
 
-    note.graph.forEach((node) => this.connectNode(node, destination));
+    note.graph.forEach((node) => this.connectNode(audioContext, node, destination));
   }
 
-  connectNode(node, destination) {
+  connectNode(audioContext, node, destination) {
     switch (node.type) {
       case "gain":
-        let gainNode = this.connectGainNode(node.properties, destination);
-        this.connectSources(node.connections, gainNode);
+        let gainNode = this.connectGainNode(audioContext, node.properties, destination);
+        this.connectSources(audioContext, node.connections, gainNode);
         break;
 
       case "oscillator":
-        let oscillatorNode = this.connectOscillatorNode(node.properties, destination);
-        this.connectSources(node.connections, oscillatorNode);
+        let oscillatorNode = this.connectOscillatorNode(audioContext, node.properties, destination);
+        this.connectSources(audioContext, node.connections, oscillatorNode);
         break;
 
       default:
@@ -39,15 +39,15 @@ class NoteScheduler extends Component {
     }
   }
 
-  connectGainNode(properties, destination) {
+  connectGainNode(audioContext, properties, destination) {
     if (properties.value !== undefined) {
-      let constantGainNode = this.props.audioContext.createGain();
+      let constantGainNode = audioContext.createGain();
       constantGainNode.gain.setValueAtTime(properties.value, this.currentTime);
       constantGainNode.connect(destination);
       return constantGainNode;
     }
     else if (properties.values !== undefined) {
-      var envelopeGainNode = this.props.audioContext.createGain();
+      var envelopeGainNode = audioContext.createGain();
       envelopeGainNode.gain.setValueAtTime(0.00001, this.currentTime);
       properties.values.forEach((value) => this.setEnvelopeValue(envelopeGainNode, value));
       envelopeGainNode.gain.exponentialRampToValueAtTime(0.00001, this.currentTime + DEFAULT_NOTE_LENGTH);
@@ -75,13 +75,13 @@ class NoteScheduler extends Component {
     }
   }
 
-  connectOscillatorNode(properties, destination) {
+  connectOscillatorNode(audioContext, properties, destination) {
     if (properties.type === undefined || properties.multiple === undefined)
       return destination;
 
     switch (properties.type) {
       case "sine":
-        let sineOscillatorNode = this.props.audioContext.createOscillator();
+        let sineOscillatorNode = audioContext.createOscillator();
         sineOscillatorNode.type = "sine";
         sineOscillatorNode.frequency.value = this.params.fundamental * properties.multiple;
         sineOscillatorNode.connect(destination);
@@ -96,9 +96,9 @@ class NoteScheduler extends Component {
     }
   }
 
-  connectSources(connections, destination) {
+  connectSources(audioContext, connections, destination) {
     if (connections !== undefined) {
-      connections.forEach((source) => this.connectNode(source, destination));
+      connections.forEach((source) => this.connectNode(audioContext, source, destination));
     }
   }
 
