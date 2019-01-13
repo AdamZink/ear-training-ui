@@ -1,4 +1,4 @@
-import NodeConnector from './connector/NodeConnector';
+import { NodeConnector } from './connector';
 
 export default class NoteScheduler {
 
