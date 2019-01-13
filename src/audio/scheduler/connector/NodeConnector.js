@@ -1,5 +1,5 @@
 import { GainNodeConnector } from './gain';
-import OscillatorNodeConnector from './oscillator/OscillatorNodeConnector';
+import { OscillatorNodeConnector } from './oscillator';
 
 export default class NodeConnector {
 
