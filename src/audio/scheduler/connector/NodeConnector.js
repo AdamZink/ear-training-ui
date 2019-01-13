@@ -1,7 +1,7 @@
 import GainNodeConnector from './gain/GainNodeConnector';
 import OscillatorNodeConnector from './oscillator/OscillatorNodeConnector';
 
-class NodeConnector {
+export default class NodeConnector {
 
   static connectNode(audioContext, node, destination, startTime, params) {
     switch (node.type) {
@@ -26,5 +26,3 @@ class NodeConnector {
     }
   }
 }
-
-export default NodeConnector;
