@@ -1,4 +1,4 @@
-import { DEFAULT_NOTE_LENGTH } from 'audio/engine/constants';
+import { DEFAULT_NOTE_LENGTH } from 'audio/constants';
 
 const OSCILLATOR_NODE_TYPES = ["sine", "square", "sawtooth", "triangle"];
 

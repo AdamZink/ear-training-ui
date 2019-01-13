@@ -1,5 +1,5 @@
 import EnvelopeValueScheduler from './envelope/EnvelopeValueScheduler';
-import { DEFAULT_NOTE_LENGTH } from 'audio/engine/constants';
+import { DEFAULT_NOTE_LENGTH } from 'audio/constants';
 
 class GainNodeConnector {
 

@@ -1,4 +1,4 @@
-import { DEFAULT_NOTE_LENGTH } from 'audio/engine/constants';
+import { DEFAULT_NOTE_LENGTH } from 'audio/constants';
 
 class EnvelopeValueScheduler {
 
