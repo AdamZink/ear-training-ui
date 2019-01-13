@@ -1,4 +1,4 @@
-const sineTestNote = {
+export const sineTestNote = {
   "name": "440 hz",
   "params": {
     "fundamental": 440,
@@ -45,5 +45,3 @@ const sineTestNote = {
     }
   ]
 };
-
-export default sineTestNote;

@@ -1,5 +1,5 @@
 import NoteScheduler from './scheduler/NoteScheduler';
-import sineTestNote from 'audio/notes';
+import { sineTestNote } from 'audio/notes';
 import { AUDIO_CONTEXT } from './constants';
 
 class WebAudioEngine {
