@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import WebAudioEngine from 'audio/WebAudioEngine';
+import { WebAudioEngine } from 'audio';
 
 export default class App extends Component {
 
