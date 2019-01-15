@@ -1,8 +1,11 @@
 export const sineTestNote = {
   "name": "440 hz",
-  "params": {
-    "fundamental": 440,
-  },
+  "params": [
+    {
+      "name": "fundamental",
+      "default": 440
+    }
+  ],
   "graph": [
     {
       "name": "Envelope",
