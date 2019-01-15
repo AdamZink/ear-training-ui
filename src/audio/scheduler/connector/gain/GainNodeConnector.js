@@ -1,7 +1,7 @@
-import EnvelopeValueScheduler from './envelope/EnvelopeValueScheduler';
-import { DEFAULT_NOTE_LENGTH } from 'audio/engine/constants';
+import { EnvelopeValueScheduler } from './envelope';
+import { DEFAULT_NOTE_LENGTH } from 'audio/constants';
 
-class GainNodeConnector {
+export default class GainNodeConnector {
 
   static connectGainNode(audioContext, properties, destination, startTime) {
     if (properties.value !== undefined) {
@@ -20,5 +20,3 @@ class GainNodeConnector {
     }
   }
 }
-
-export default GainNodeConnector;

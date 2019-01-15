@@ -1,6 +1,6 @@
-import NodeConnector from './connector/NodeConnector';
+import { NodeConnector } from './connector';
 
-class NoteScheduler {
+export default class NoteScheduler {
 
   static scheduleNote(audioContext, note) {
     this.currentTime = audioContext.currentTime;
@@ -20,5 +20,3 @@ class NoteScheduler {
     note.graph.forEach((node) => NodeConnector.connectNode(audioContext, node, destination, this.currentTime, this.params));
   }
 }
-
-export default NoteScheduler;

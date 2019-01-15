@@ -1,6 +1,6 @@
-import { DEFAULT_NOTE_LENGTH } from 'audio/engine/constants';
+import { DEFAULT_NOTE_LENGTH } from 'audio/constants';
 
-class EnvelopeValueScheduler {
+export default class EnvelopeValueScheduler {
 
   static setEnvelopeValue(envelopeGainNode, value, startTime) {
     if (value.type === undefined)
@@ -21,5 +21,3 @@ class EnvelopeValueScheduler {
     }
   }
 }
-
-export default EnvelopeValueScheduler;
