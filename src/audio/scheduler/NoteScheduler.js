@@ -6,7 +6,6 @@ export default class NoteScheduler {
     this.currentTime = audioContext.currentTime;
 
     let noteParamValues = this.getNoteParamValues(note.params, inputParamValues);
-    console.log(noteParamValues);
 
     let destination = audioContext.destination;
 
@@ -16,28 +15,16 @@ export default class NoteScheduler {
   static getNoteParamValues(noteParams, inputParamValues) {
     let noteParamValues = {};
 
-    let fundamentalValue = this.getFundamentalParamValue(noteParams, inputParamValues);
-    if (fundamentalValue !== null) {
-      noteParamValues.fundamental = fundamentalValue;
-    }
-
+    noteParams.forEach((noteParam) => {
+      noteParamValues[noteParam.name] = this.getParamValue(noteParam, inputParamValues);
+    });
     return noteParamValues;
   }
 
-  static getFundamentalParamValue(noteParams, inputParamValues) {
-    let fundamentalParams = noteParams.filter(param => param.name === 'fundamental');
-
-    if (fundamentalParams.length === 1) {
-      if (inputParamValues.fundamental === undefined) {
-        // use default fundamental value in note params definition
-        return fundamentalParams[0].default;
-      } else {
-        // use input fundamental value to override default
-        return inputParamValues.fundamental;
-      }
-    } else {
-      // fundamental param not in note params definition
-      return null;
+  static getParamValue(noteParam, inputParamValues) {
+    if (inputParamValues[noteParam.name] === undefined) {
+      return noteParam.default;
     }
+    return inputParamValues[noteParam.name];
   }
 }
