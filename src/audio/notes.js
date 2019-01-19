@@ -4,7 +4,11 @@ export const sineTestNote = {
     {
       "name": "fundamental",
       "default": 440
-    }
+    },
+    {
+      "name": "duration",
+      "default": 0.25
+    },
   ],
   "graph": [
     {
