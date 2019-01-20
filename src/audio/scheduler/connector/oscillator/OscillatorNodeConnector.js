@@ -1,5 +1,3 @@
-import { DEFAULT_NOTE_LENGTH } from 'audio/constants';
-
 const OSCILLATOR_NODE_TYPES = ["sine", "square", "sawtooth", "triangle"];
 
 export default class OscillatorNodeConnector {
@@ -19,7 +17,7 @@ export default class OscillatorNodeConnector {
     sineOscillatorNode.connect(destination);
 
     sineOscillatorNode.start(startTime);
-    sineOscillatorNode.stop(startTime + DEFAULT_NOTE_LENGTH);
+    sineOscillatorNode.stop(startTime + params.duration);
 
     return sineOscillatorNode;
   }

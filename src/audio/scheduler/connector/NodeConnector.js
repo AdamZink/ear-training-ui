@@ -6,7 +6,7 @@ export default class NodeConnector {
   static connectNode(audioContext, node, destination, startTime, params) {
     switch (node.type) {
       case "gain":
-        let gainNode = GainNodeConnector.connectGainNode(audioContext, node.properties, destination, startTime);
+        let gainNode = GainNodeConnector.connectGainNode(audioContext, node.properties, destination, startTime, params);
         this.connectSources(audioContext, node.connections, gainNode, startTime, params);
         break;
 

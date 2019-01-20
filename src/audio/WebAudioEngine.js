@@ -2,6 +2,9 @@ import NoteScheduler from './scheduler/NoteScheduler';
 import { sineTestNote } from 'audio/notes';
 import { AUDIO_CONTEXT } from './constants';
 
+const FREQUENCY = 500;
+const DURATION = 0.5;
+
 export default class WebAudioEngine {
 
   static verifyElseCreateAudioContext() {
@@ -12,6 +15,6 @@ export default class WebAudioEngine {
 
   static callScheduleNote() {
     this.verifyElseCreateAudioContext();
-    NoteScheduler.scheduleNote(this.audioContext, sineTestNote);
+    NoteScheduler.scheduleNote(this.audioContext, sineTestNote, { 'fundamental': FREQUENCY, 'duration': DURATION });
   }
 }
