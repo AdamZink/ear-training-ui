@@ -8,9 +8,14 @@ export default class App extends Component {
     return (
       <div className="App">
         <h2>React Web Audio Demo</h2>
-        <p>
-          <button onClick={() => WebAudioEngine.callScheduleNote()}>Play Tone</button>
-        </p>
+        <table>
+          <tr>
+            <td><button onClick={() => WebAudioEngine.playSine()}>Play Sine</button></td>
+            <td><button onClick={() => WebAudioEngine.playSquare()}>Play Square</button></td>
+            <td><button onClick={() => WebAudioEngine.playSawtooth()}>Play Sawtooth</button></td>
+            <td><button onClick={() => WebAudioEngine.playTriangle()}>Play Triangle</button></td>
+          </tr>
+        </table>
       </div>
     );
   }
