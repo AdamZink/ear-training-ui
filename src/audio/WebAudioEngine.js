@@ -17,22 +17,22 @@ export default class WebAudioEngine {
     }
   }
 
-  static playSine() {
+  static recordSine() {
     this.verifyElseCreateAudioContext();
     NoteScheduler.scheduleNote(this.audioContext, sineTestNote, { 'fundamental': FREQUENCY, 'duration': 1 });
   }
 
-  static playSquare() {
+  static recordSquare() {
     this.verifyElseCreateAudioContext();
     NoteScheduler.scheduleNote(this.audioContext, squareTestNote, { 'fundamental': FREQUENCY, 'duration': 0.25 });
   }
 
-  static playSawtooth() {
+  static recordSawtooth() {
     this.verifyElseCreateAudioContext();
     NoteScheduler.scheduleNote(this.audioContext, sawtoothTestNote, { 'fundamental': FREQUENCY, 'duration': 0.5 });
   }
 
-  static playTriangle() {
+  static recordTriangle() {
     this.verifyElseCreateAudioContext();
     NoteScheduler.scheduleNote(this.audioContext, triangleTestNote, { 'fundamental': FREQUENCY, 'duration': 0.75 });
   }

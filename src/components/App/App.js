@@ -10,12 +10,18 @@ export default class App extends Component {
         <h2>React Web Audio Demo</h2>
         <table>
           <tr>
-            <td><button onClick={() => WebAudioEngine.playSine()}>Play Sine</button></td>
-            <td><button onClick={() => WebAudioEngine.playSquare()}>Play Square</button></td>
-            <td><button onClick={() => WebAudioEngine.playSawtooth()}>Play Sawtooth</button></td>
-            <td><button onClick={() => WebAudioEngine.playTriangle()}>Play Triangle</button></td>
+            <td><button onClick={() => WebAudioEngine.recordSine()}>Record Sine</button></td>
+            <td><button onClick={() => WebAudioEngine.recordSquare()}>Record Square</button></td>
+            <td><button onClick={() => WebAudioEngine.recordSawtooth()}>Record Sawtooth</button></td>
+            <td><button onClick={() => WebAudioEngine.recordTriangle()}>Record Triangle</button></td>
           </tr>
         </table>
+        <div>
+          <audio id="recording" controls></audio>
+        </div>
+        <div>
+          <a id="downloadAudio" href="#">Download the recording</a>
+        </div>
       </div>
     );
   }
