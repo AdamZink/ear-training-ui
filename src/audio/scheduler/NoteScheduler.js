@@ -1,4 +1,4 @@
-import { NodeConnector } from './connector';
+import { MasterConnector } from './connector';
 
 export default class NoteScheduler {
 
@@ -7,13 +7,15 @@ export default class NoteScheduler {
 
     let noteParamValues = this.getNoteParamValues(note.params, inputParamValues);
 
-    //let destination = audioContext.destination;
+    let destinations = [];
+    destinations.push(audioContext.destination);  // speakers
+
+    let mediaStreamDestination = audioContext.createMediaStreamDestination();
+    destinations.push(mediaStreamDestination);  // recording
 
     var chunks = [];
 
-    let destination = audioContext.createMediaStreamDestination();
-
-    var mediaRecorder = new MediaRecorder(destination.stream);
+    var mediaRecorder = new MediaRecorder(mediaStreamDestination.stream);
 
     mediaRecorder.ondataavailable = function(evt) {
       chunks.push(evt.data);
@@ -42,11 +44,14 @@ export default class NoteScheduler {
     mediaRecorder.start();
     stopRecordingAfterOneSecond();
 
-    note.graph.forEach((node) => NodeConnector.connectNode(audioContext, node, destination, this.currentTime, noteParamValues));
+    MasterConnector.connectMaster(audioContext, note.graph, destinations, this.currentTime, noteParamValues);
   }
 
   static getNoteParamValues(noteParams, inputParamValues) {
     let noteParamValues = {};
+
+    // add master gain strength to every note
+    noteParamValues['strength'] = this.getParamValue({ 'name': 'strength', 'default': 0.5 }, inputParamValues);
 
     noteParams.forEach((noteParam) => {
       noteParamValues[noteParam.name] = this.getParamValue(noteParam, inputParamValues);
