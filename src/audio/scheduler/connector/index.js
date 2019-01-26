@@ -1,3 +1,7 @@
+import MasterConnector from './MasterConnector';
 import NodeConnector from './NodeConnector';
 
-export { NodeConnector };
+export {
+  MasterConnector,
+  NodeConnector
+};

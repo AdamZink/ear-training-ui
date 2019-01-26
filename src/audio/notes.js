@@ -36,21 +36,12 @@ export const sineTestNote = {
       "properties": ENVELOPE_PROPERTIES,
       "connections": [
         {
-          "name": "Oscillator Gain",
-          "type": "gain",
+          "name": "Sine",
+          "type": "oscillator",
           "properties": {
-            "value": 0.25
-          },
-          "connections": [
-            {
-              "name": "Sine",
-              "type": "oscillator",
-              "properties": {
-                "type": "sine",
-                "multiple": 1
-              }
-            }
-          ]
+            "type": "sine",
+            "multiple": 1
+          }
         }
       ]
     }
@@ -67,21 +58,12 @@ export const squareTestNote = {
       "properties": ENVELOPE_PROPERTIES,
       "connections": [
         {
-          "name": "Oscillator Gain",
-          "type": "gain",
+          "name": "Square",
+          "type": "oscillator",
           "properties": {
-            "value": 0.05
-          },
-          "connections": [
-            {
-              "name": "Square",
-              "type": "oscillator",
-              "properties": {
-                "type": "square",
-                "multiple": 1
-              }
-            }
-          ]
+            "type": "square",
+            "multiple": 1
+          }
         }
       ]
     }
@@ -98,21 +80,12 @@ export const sawtoothTestNote = {
       "properties": ENVELOPE_PROPERTIES,
       "connections": [
         {
-          "name": "Oscillator Gain",
-          "type": "gain",
+          "name": "Sawtooth",
+          "type": "oscillator",
           "properties": {
-            "value": 0.05
-          },
-          "connections": [
-            {
-              "name": "Sawtooth",
-              "type": "oscillator",
-              "properties": {
-                "type": "sawtooth",
-                "multiple": 1
-              }
-            }
-          ]
+            "type": "sawtooth",
+            "multiple": 1
+          }
         }
       ]
     }
@@ -129,21 +102,12 @@ export const triangleTestNote = {
       "properties": ENVELOPE_PROPERTIES,
       "connections": [
         {
-          "name": "Oscillator Gain",
-          "type": "gain",
+          "name": "Triangle",
+          "type": "oscillator",
           "properties": {
-            "value": 0.2
-          },
-          "connections": [
-            {
-              "name": "Triangle",
-              "type": "oscillator",
-              "properties": {
-                "type": "triangle",
-                "multiple": 1
-              }
-            }
-          ]
+            "type": "triangle",
+            "multiple": 1
+          }
         }
       ]
     }
