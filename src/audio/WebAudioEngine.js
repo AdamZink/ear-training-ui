@@ -12,28 +12,28 @@ const FREQUENCY = 500;
 export default class WebAudioEngine {
 
   static verifyElseCreateAudioContext() {
-    if (!this.hasOwnProperty(AUDIO_CONTEXT)) {
-      this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    if (!WebAudioEngine.hasOwnProperty(AUDIO_CONTEXT)) {
+      WebAudioEngine.audioContext = new (window.AudioContext || window.webkitAudioContext)();
     }
   }
 
   static recordSine() {
-    this.verifyElseCreateAudioContext();
-    NoteScheduler.scheduleNote(this.audioContext, sineTestNote, { 'fundamental': FREQUENCY, 'duration': 1, 'strength': 0.25 });
+    WebAudioEngine.verifyElseCreateAudioContext();
+    NoteScheduler.scheduleNote(WebAudioEngine.audioContext, sineTestNote, { 'fundamental': FREQUENCY, 'duration': 1, 'strength': 0.25 });
   }
 
   static recordSquare() {
-    this.verifyElseCreateAudioContext();
-    NoteScheduler.scheduleNote(this.audioContext, squareTestNote, { 'fundamental': FREQUENCY, 'duration': 0.25, 'strength': 0.05 });
+    WebAudioEngine.verifyElseCreateAudioContext();
+    NoteScheduler.scheduleNote(WebAudioEngine.audioContext, squareTestNote, { 'fundamental': FREQUENCY, 'duration': 0.25, 'strength': 0.05 });
   }
 
   static recordSawtooth() {
-    this.verifyElseCreateAudioContext();
-    NoteScheduler.scheduleNote(this.audioContext, sawtoothTestNote, { 'fundamental': FREQUENCY, 'duration': 0.5, 'strength': 0.05 });
+    WebAudioEngine.verifyElseCreateAudioContext();
+    NoteScheduler.scheduleNote(WebAudioEngine.audioContext, sawtoothTestNote, { 'fundamental': FREQUENCY, 'duration': 0.5, 'strength': 0.05 });
   }
 
   static recordTriangle() {
-    this.verifyElseCreateAudioContext();
-    NoteScheduler.scheduleNote(this.audioContext, triangleTestNote, { 'fundamental': FREQUENCY, 'duration': 0.75, 'strength': 0.2 });
+    WebAudioEngine.verifyElseCreateAudioContext();
+    NoteScheduler.scheduleNote(WebAudioEngine.audioContext, triangleTestNote, { 'fundamental': FREQUENCY, 'duration': 0.75, 'strength': 0.2 });
   }
 }

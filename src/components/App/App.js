@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { WebAudioEngine } from 'audio';
+import NoteDemo from './NoteDemo';
 
 export default class App extends Component {
 
@@ -8,14 +9,14 @@ export default class App extends Component {
     return (
       <div className="App">
         <h2>React Web Audio Demo</h2>
-        <table>
+        <table><tbody>
           <tr>
-            <td><button onClick={() => WebAudioEngine.recordSine()}>Record Sine</button></td>
-            <td><button onClick={() => WebAudioEngine.recordSquare()}>Record Square</button></td>
-            <td><button onClick={() => WebAudioEngine.recordSawtooth()}>Record Sawtooth</button></td>
-            <td><button onClick={() => WebAudioEngine.recordTriangle()}>Record Triangle</button></td>
+            <td><NoteDemo title="Sine" recordFunc={WebAudioEngine.recordSine} /></td>
+            <td><NoteDemo title="Square" recordFunc={WebAudioEngine.recordSquare} /></td>
+            <td><NoteDemo title="Sawtooth" recordFunc={WebAudioEngine.recordSawtooth} /></td>
+            <td><NoteDemo title="Triangle" recordFunc={WebAudioEngine.recordTriangle} /></td>
           </tr>
-        </table>
+        </tbody></table>
         <div>
           <audio id="recording" controls></audio>
         </div>
