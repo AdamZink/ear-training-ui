@@ -17,12 +17,6 @@ export default class App extends Component {
             <td><NoteDemo title="Triangle" recordFunc={WebAudioEngine.recordTriangle} /></td>
           </tr>
         </tbody></table>
-        <div>
-          <audio id="recording" controls></audio>
-        </div>
-        <div>
-          <a id="downloadAudio" href="#">Download the recording</a>
-        </div>
       </div>
     );
   }

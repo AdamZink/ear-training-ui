@@ -2,7 +2,7 @@ import { MasterConnector } from './connector';
 
 export default class NoteScheduler {
 
-  static scheduleNote(audioContext, note, inputParamValues) {
+  static scheduleNote(audioContext, note, inputParamValues, setReplayCallback) {
     this.currentTime = audioContext.currentTime;
 
     let noteParamValues = this.getNoteParamValues(note.params, inputParamValues);
@@ -26,12 +26,8 @@ export default class NoteScheduler {
       // Media types: https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_media_formats
       var blob = new Blob(chunks, { 'type': 'audio/wav; codecs=PCM' });
       let recordingUrl = URL.createObjectURL(blob);
-      document.querySelector("#recording").src = recordingUrl;
 
-      var downloadElement = document.getElementById('downloadAudio');
-      downloadElement.href = recordingUrl;
-      downloadElement.target = '_blank';
-      downloadElement.download = 'web_audio_demo_recording.wav';
+      setReplayCallback(recordingUrl);
     };
 
     const delay = ms => new Promise(res => setTimeout(res, ms));
