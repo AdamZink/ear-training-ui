@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
-import { WebAudioEngine } from 'audio';
+
 import NoteDemo from './NoteDemo';
+import { WebAudioEngine } from 'audio';
+import './App.css';
 
 export default class App extends Component {
 
