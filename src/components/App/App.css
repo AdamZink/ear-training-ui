@@ -8,6 +8,7 @@ table {
 
 td {
   padding: 2px;
+  vertical-align: top;
 }
 
 .App-logo {
