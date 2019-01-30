@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid';
 
 import NoteDemo from './NoteDemo';
 import { WebAudioEngine } from 'audio';
@@ -10,14 +11,20 @@ export default class App extends Component {
     return (
       <div className="App">
         <h2>React Web Audio Demo</h2>
-        <table><tbody>
-          <tr>
-            <td><NoteDemo title="Sine" recordFunc={WebAudioEngine.recordSine} /></td>
-            <td><NoteDemo title="Square" recordFunc={WebAudioEngine.recordSquare} /></td>
-            <td><NoteDemo title="Sawtooth" recordFunc={WebAudioEngine.recordSawtooth} /></td>
-            <td><NoteDemo title="Triangle" recordFunc={WebAudioEngine.recordTriangle} /></td>
-          </tr>
-        </tbody></table>
+        <Grid container direction="column" alignItems="center" spacing={24}>
+          <Grid item md={3}>
+            <NoteDemo title="Sine" recordFunc={WebAudioEngine.recordSine} />
+          </Grid>
+          <Grid item md={3}>
+            <NoteDemo title="Square" recordFunc={WebAudioEngine.recordSquare} />
+          </Grid>
+          <Grid item md={3}>
+            <NoteDemo title="Sawtooth" recordFunc={WebAudioEngine.recordSawtooth} />
+          </Grid>
+          <Grid item md={3}>
+            <NoteDemo title="Triangle" recordFunc={WebAudioEngine.recordTriangle} />
+          </Grid>
+        </Grid>
       </div>
     );
   }
