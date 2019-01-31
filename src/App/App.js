@@ -12,16 +12,16 @@ export default class App extends Component {
       <div className="App">
         <h2>React Web Audio Demo</h2>
         <Grid container direction="column" alignItems="center" spacing={24}>
-          <Grid item md={3}>
+          <Grid item>
             <NoteDemo title="Sine" recordFunc={WebAudioEngine.recordSine} />
           </Grid>
-          <Grid item md={3}>
+          <Grid item>
             <NoteDemo title="Square" recordFunc={WebAudioEngine.recordSquare} />
           </Grid>
-          <Grid item md={3}>
+          <Grid item>
             <NoteDemo title="Sawtooth" recordFunc={WebAudioEngine.recordSawtooth} />
           </Grid>
-          <Grid item md={3}>
+          <Grid item>
             <NoteDemo title="Triangle" recordFunc={WebAudioEngine.recordTriangle} />
           </Grid>
         </Grid>
