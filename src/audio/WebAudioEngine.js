@@ -17,6 +17,15 @@ export default class WebAudioEngine {
     }
   }
 
+  static playSine(fundamental) {
+    WebAudioEngine.verifyElseCreateAudioContext();
+    NoteScheduler.scheduleNote(
+      WebAudioEngine.audioContext,
+      sineTestNote,
+      { 'fundamental': fundamental, 'duration': 1, 'strength': 0.25 }
+    );
+  }
+
   static recordSine() {
     WebAudioEngine.verifyElseCreateAudioContext();
     NoteScheduler.scheduleNote(
