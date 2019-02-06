@@ -17,43 +17,39 @@ export default class WebAudioEngine {
     }
   }
 
-  static recordSine(setReplayCallback) {
+  static recordSine() {
     WebAudioEngine.verifyElseCreateAudioContext();
     NoteScheduler.scheduleNote(
       WebAudioEngine.audioContext,
       sineTestNote,
-      { 'fundamental': FREQUENCY, 'duration': 1, 'strength': 0.25 },
-      setReplayCallback
+      { 'fundamental': FREQUENCY, 'duration': 1, 'strength': 0.25 }
     );
   }
 
-  static recordSquare(setReplayCallback) {
+  static recordSquare() {
     WebAudioEngine.verifyElseCreateAudioContext();
     NoteScheduler.scheduleNote(
       WebAudioEngine.audioContext,
       squareTestNote,
-      { 'fundamental': FREQUENCY, 'duration': 0.25, 'strength': 0.05 },
-      setReplayCallback
+      { 'fundamental': FREQUENCY, 'duration': 0.25, 'strength': 0.05 }
     );
   }
 
-  static recordSawtooth(setReplayCallback) {
+  static recordSawtooth() {
     WebAudioEngine.verifyElseCreateAudioContext();
     NoteScheduler.scheduleNote(
       WebAudioEngine.audioContext,
       sawtoothTestNote,
-      { 'fundamental': FREQUENCY, 'duration': 0.5, 'strength': 0.05 },
-      setReplayCallback
+      { 'fundamental': FREQUENCY, 'duration': 0.5, 'strength': 0.05 }
     );
   }
 
-  static recordTriangle(setReplayCallback) {
+  static recordTriangle() {
     WebAudioEngine.verifyElseCreateAudioContext();
     NoteScheduler.scheduleNote(
       WebAudioEngine.audioContext,
       triangleTestNote,
-      { 'fundamental': FREQUENCY, 'duration': 0.75, 'strength': 0.2 },
-      setReplayCallback
+      { 'fundamental': FREQUENCY, 'duration': 0.75, 'strength': 0.2 }
     );
   }
 }

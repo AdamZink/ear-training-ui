@@ -6,7 +6,7 @@ import './PlayRecordButton.css';
 export default class PlayRecordButton extends Component {
 
   handleClick() {
-    this.props.recordFunc(this.props.setReplayCallback);
+    this.props.recordFunc();
   }
 
   render() {
@@ -19,6 +19,5 @@ export default class PlayRecordButton extends Component {
 }
 
 PlayRecordButton.propTypes = {
-  recordFunc: PropTypes.func.isRequired,
-  setReplayCallback: PropTypes.func.isRequired
+  recordFunc: PropTypes.func.isRequired
 };
