@@ -33,6 +33,7 @@ export default class App extends Component {
       <div className="App">
         <h2>Ear Training</h2>
         <Grid container direction="column" alignItems="center" spacing={0}>
+          <Grid item><WhiteKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(523.2512)} /></Grid>
           <Grid item><WhiteKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(493.8833)} /></Grid>
           <Grid item><BlackKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(466.1638)} /></Grid>
           <Grid item><WhiteKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(440.0000)} /></Grid>
