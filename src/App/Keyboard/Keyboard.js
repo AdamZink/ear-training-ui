@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core';
 
 import { WebAudioEngine } from 'audio';
+import { keyFrequencies } from 'audio/definitions';
 
 const Key = withStyles({
   root: {
@@ -27,22 +28,37 @@ const BlackKey = withStyles({
 
 export default class Keyboard extends Component {
 
+  getKeyList() {
+    return keyFrequencies.map((keyFrequency) => {
+        if (keyFrequency.color === 'white')
+          return this.getWhiteKey(keyFrequency.frequency);
+        else if (keyFrequency.color === 'black')
+          return this.getBlackKey(keyFrequency.frequency);
+        else return null;
+      }
+    );
+  }
+
+  getWhiteKey(frequency) {
+    return (
+      <Grid item>
+        <WhiteKey variant="contained" onMouseDown={() => WebAudioEngine.playKeyboard(frequency)} />
+      </Grid>
+    );
+  }
+
+  getBlackKey(frequency) {
+    return (
+      <Grid item>
+        <BlackKey variant="contained" onMouseDown={() => WebAudioEngine.playKeyboard(frequency)} />
+      </Grid>
+    );
+  }
+
   render() {
     return (
       <Grid container direction="column" alignItems="center" spacing={0}>
-        <Grid item><WhiteKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(523.2512)} /></Grid>
-        <Grid item><WhiteKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(493.8833)} /></Grid>
-        <Grid item><BlackKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(466.1638)} /></Grid>
-        <Grid item><WhiteKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(440.0000)} /></Grid>
-        <Grid item><BlackKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(415.3047)} /></Grid>
-        <Grid item><WhiteKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(391.9954)} /></Grid>
-        <Grid item><BlackKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(369.9944)} /></Grid>
-        <Grid item><WhiteKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(349.2282)} /></Grid>
-        <Grid item><WhiteKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(329.6276)} /></Grid>
-        <Grid item><BlackKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(311.1270)} /></Grid>
-        <Grid item><WhiteKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(293.6648)} /></Grid>
-        <Grid item><BlackKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(277.1826)} /></Grid>
-        <Grid item><WhiteKey variant="contained" onClick={() => WebAudioEngine.playKeyboard(261.6256)} /></Grid>
+        {this.getKeyList()}
       </Grid>
     );
   }
