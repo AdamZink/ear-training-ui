@@ -26,6 +26,45 @@ const ENVELOPE_PROPERTIES = {
   ]
 };
 
+const KEYBOARD_ENVELOPE_PROPERTIES = {
+  "values": [
+    {
+      "type": "exponential",
+      "value": 1,
+      "timeFrom": "start",
+      "time": 0.02,
+    },
+    {
+      "type": "exponential",
+      "value": 0.0001,
+      "timeFrom": "start",
+      "time": 2,
+    }
+  ]
+};
+
+export const keyboardNote = {
+  "name": "Keyboard",
+  "params": DEFAULT_PARAMS,
+  "graph": [
+    {
+      "name": "Envelope",
+      "type": "gain",
+      "properties": KEYBOARD_ENVELOPE_PROPERTIES,
+      "connections": [
+        {
+          "name": "Oscillator",
+          "type": "oscillator",
+          "properties": {
+            "type": "sine",
+            "multiple": 1
+          }
+        }
+      ]
+    }
+  ]
+};
+
 export const sineTestNote = {
   "name": "Sine demo",
   "params": DEFAULT_PARAMS,
