@@ -11,7 +11,11 @@ export default class Keyboard extends Component {
       <Grid container direction="column" alignItems="center" spacing={0}>
         {keyFrequencies.map((keyFrequency) =>
           <Grid item>
-            <Key color={keyFrequency.color} frequency={keyFrequency.frequency} />
+            <Key
+              color={keyFrequency.color}
+              frequency={keyFrequency.frequency}
+              inQuizMode={this.props.inQuizMode}
+            />
           </Grid>
         )}
       </Grid>

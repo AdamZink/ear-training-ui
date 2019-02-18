@@ -8,15 +8,42 @@ import { KeyButton } from './KeyStyles';
 
 export default class Key extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentColor: this.props.color
+    }
+  }
+
+  handleAnswer = (keyObject, isCorrect) => {
+    if (isCorrect) {
+      keyObject.setState({
+        currentColor: "green"
+      });
+    } else {
+      keyObject.setState({
+        currentColor: "red"
+      });
+    }
+
+    setTimeout(function() {
+      keyObject.setState({
+        currentColor: keyObject.props.color
+      });
+    }, 400);
+  }
+
   render() {
     return (
       <Grid item>
         <KeyButton
           variant="contained"
-          style={{ backgroundColor: this.props.color }}
+          style={{ backgroundColor: this.state.currentColor }}
           onMouseDown={() => {
             WebAudioEngine.playKeyboard(this.props.frequency);
-            QuizEngine.answer(this.props.frequency);
+            if (this.props.inQuizMode) {
+              QuizEngine.answer(this, this.props.frequency, this.handleAnswer);
+            }
           }}
         />
       </Grid>

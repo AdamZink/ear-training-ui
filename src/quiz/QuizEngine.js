@@ -12,7 +12,7 @@ export default class QuizEngine {
 
   static initializeDataIfNotExists() {
     if (this.itemPool === undefined) {
-      this.itemPool = keyFrequencies;
+      this.itemPool = [...keyFrequencies];
       this.currentItem = null;
       this.lastQuestionTime = null;
       this.lastAnswerTime = null;
@@ -50,25 +50,27 @@ export default class QuizEngine {
     this.lastQuestionTime = WebAudioEngine.getCurrentTime();
   }
 
-  static answer(frequency) {
-    if (this.currentItem !== undefined) {
+  static answer(keyObject, frequency, answerWasCorrect) {
+    if (this.currentItem !== null) {
       if (frequency === this.currentItem.frequency) {
-        console.log("Correct!");
+        answerWasCorrect(keyObject, true);
       } else {
-        console.log("Wrong...");
+        answerWasCorrect(keyObject, false);
       };
 
       this.lastAnswerTime = WebAudioEngine.getCurrentTime();
       console.log(this.lastAnswerTime);
-    }
 
-    let nextQuestionDelay = (this.lastAnswerTime - this.lastQuestionTime) * 1000;
-    if (nextQuestionDelay > 4000) {
-      nextQuestionDelay = 2000;
+      let nextQuestionDelay = (this.lastAnswerTime - this.lastQuestionTime) * 1000;
+      if (nextQuestionDelay > 2000) {
+        nextQuestionDelay = 2000;
+      }
+      setTimeout(
+        function() { QuizEngine.ask(); },
+        nextQuestionDelay
+      );
+
+      this.currentItem = null;
     }
-    setTimeout(
-      function() { QuizEngine.ask(); },
-      nextQuestionDelay
-    );
   }
 }
