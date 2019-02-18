@@ -6,10 +6,10 @@ import QuizEngine from 'quiz/QuizEngine';
 export default class QuizControl extends Component {
 
   handleClick() {
-    if (this.props.inQuizMode === false){
+    if (this.props.inQuizMode === false) {
       if (typeof this.props.setQuizMode === "function") {
         this.props.setQuizMode(true);
-        QuizEngine.start();  //for some reason, this line makes a key disappear??
+        QuizEngine.start();
       }
     }
   }

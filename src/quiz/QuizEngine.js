@@ -3,13 +3,6 @@ import { keyFrequencies } from 'audio/definitions';
 
 export default class QuizEngine {
 
-  // TODO record the audio context time that the last question was asked
-  // whenever user answers (regardless of right or wrong), record that time too
-  // take the difference, wait the difference, and then play the next frequency
-
-  // the idea is to let the user decide the cadence
-  // if they are better at answering, they can go faster, and vice versa
-
   static initializeDataIfNotExists() {
     if (this.itemPool === undefined) {
       this.itemPool = [...keyFrequencies];
@@ -57,7 +50,6 @@ export default class QuizEngine {
   static answer(keyObject, frequency, answerWasCorrect) {
     if (this.currentItem !== null) {
       this.lastAnswerTime = WebAudioEngine.getCurrentTime();
-      console.log(this.lastAnswerTime);
 
       let nextQuestionDelay = (this.lastAnswerTime - this.lastQuestionTime) * 1000;
       if (nextQuestionDelay > 2000) {
