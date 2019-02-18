@@ -41,7 +41,7 @@ export default class Key extends Component {
           style={{ backgroundColor: this.state.currentColor }}
           onMouseDown={() => {
             WebAudioEngine.playKeyboard(this.props.frequency);
-            if (this.props.inQuizMode) {
+            if (this.props.inQuizMode && !QuizEngine.hasUnaskedQuestion()) {
               QuizEngine.answer(this, this.props.frequency, this.handleAnswer);
             }
           }}

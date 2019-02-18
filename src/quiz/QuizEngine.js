@@ -16,10 +16,16 @@ export default class QuizEngine {
       this.currentItem = null;
       this.lastQuestionTime = null;
       this.lastAnswerTime = null;
+      this.unaskedQuestion = false;
+      this.unansweredQuestion = false;
     }
   }
 
-  static getNextFrequency() {
+  static hasUnaskedQuestion() {
+    return this.unaskedQuestion;
+  }
+
+  static setNextItem() {
     this.initializeDataIfNotExists();
 
     if (this.itemPool.length > 0) {
@@ -30,10 +36,7 @@ export default class QuizEngine {
         this.itemPool.splice(0, 0, this.currentItem);
       }
       this.currentItem = selectedItem;
-
-      return selectedItem.frequency;
     }
-    return null;
   }
 
   static start() {
@@ -43,21 +46,16 @@ export default class QuizEngine {
   }
 
   static ask() {
-    let randomFrequency = this.getNextFrequency();
-    if (randomFrequency !== null) {
-      WebAudioEngine.playKeyboard(randomFrequency);
+    if (this.unansweredQuestion === false) {
+      this.setNextItem();
+      this.unansweredQuestion = true;
     }
+    WebAudioEngine.playKeyboard(this.currentItem.frequency);
     this.lastQuestionTime = WebAudioEngine.getCurrentTime();
   }
 
   static answer(keyObject, frequency, answerWasCorrect) {
     if (this.currentItem !== null) {
-      if (frequency === this.currentItem.frequency) {
-        answerWasCorrect(keyObject, true);
-      } else {
-        answerWasCorrect(keyObject, false);
-      };
-
       this.lastAnswerTime = WebAudioEngine.getCurrentTime();
       console.log(this.lastAnswerTime);
 
@@ -65,12 +63,23 @@ export default class QuizEngine {
       if (nextQuestionDelay > 2000) {
         nextQuestionDelay = 2000;
       }
+
+      if (frequency === this.currentItem.frequency) {
+        answerWasCorrect(keyObject, true);
+        this.unansweredQuestion = false;
+      } else {
+        answerWasCorrect(keyObject, false);
+      };
+
+      this.unaskedQuestion = true;
+
       setTimeout(
-        function() { QuizEngine.ask(); },
+        function() {
+          QuizEngine.ask();
+          QuizEngine.unaskedQuestion = false;
+        },
         nextQuestionDelay
       );
-
-      this.currentItem = null;
     }
   }
 }
