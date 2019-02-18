@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 
 import { WebAudioEngine } from 'audio';
+import QuizEngine from 'quiz/QuizEngine';
 import { KeyButton } from './KeyStyles';
 
 export default class Key extends Component {
@@ -13,7 +14,10 @@ export default class Key extends Component {
         <KeyButton
           variant="contained"
           style={{ backgroundColor: this.props.color }}
-          onMouseDown={() => WebAudioEngine.playKeyboard(this.props.frequency)}
+          onMouseDown={() => {
+            WebAudioEngine.playKeyboard(this.props.frequency);
+            QuizEngine.answer(this.props.frequency);
+          }}
         />
       </Grid>
     );

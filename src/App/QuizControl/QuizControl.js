@@ -10,7 +10,7 @@ export default class QuizControl extends Component {
       <Button
         variant="contained"
         style={{ marginBottom: 20 }}
-        onClick={() => QuizEngine.playRandomNote()}
+        onClick={() => QuizEngine.start()}
       >
         Play Random Note
       </Button>
