@@ -18,4 +18,9 @@ export default class WebAudioEngine {
       { 'fundamental': fundamental, 'duration': 2.5, 'strength': 0.5 }
     );
   }
+
+  static getCurrentTime() {
+    WebAudioEngine.verifyElseCreateAudioContext();
+    return WebAudioEngine.audioContext.currentTime;
+  }
 }
