@@ -53,5 +53,6 @@ export default class Key extends Component {
 
 Key.propTypes = {
   color: PropTypes.string.isRequired,
-  frequency: PropTypes.number.isRequired
+  frequency: PropTypes.number.isRequired,
+  inQuizMode: PropTypes.bool.isRequired
 };

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types';
 
 import { keyFrequencies } from 'audio/definitions';
 import Key from './Key';
@@ -22,3 +23,7 @@ export default class Keyboard extends Component {
     );
   }
 }
+
+Keyboard.propTypes = {
+  inQuizMode: PropTypes.bool.isRequired
+};

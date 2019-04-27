@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
 
 import QuizEngine from 'quiz/QuizEngine';
 
@@ -26,3 +27,8 @@ export default class QuizControl extends Component {
     );
   }
 }
+
+QuizControl.propTypes = {
+  inQuizMode: PropTypes.bool.isRequired,
+  setQuizMode: PropTypes.func.isRequired
+};
